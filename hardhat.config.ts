@@ -1,13 +1,18 @@
-import { HardhatUserConfig } from "hardhat/config";
-import "@nomicfoundation/hardhat-toolbox";
+// import { HardhatUserConfig } from "hardhat/config";
+// import "@nomicfoundation/hardhat-toolbox";
+require("@nomicfoundation/hardhat-toolbox"); //CommonJs env
 
 require("dotenv").config(); // For demonstration purposes only, not recommended
 
-const config: HardhatUserConfig = {
+const config = {
   solidity: "0.8.24",
+  networks: {
+    localhost: {}
+  }
 };
 
-export default config;
+/* export default config; */
+module.exports = config; //CommonJS env
 
 /*
 Accessing variables from .env file without copying them directly here...
