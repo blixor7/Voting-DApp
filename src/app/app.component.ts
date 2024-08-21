@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { WalletService } from './ethereum/wallet.service';
+import { WalletService } from './ethereum/wallet/wallet.service';
+import { VoterTokenService } from './ethereum/voterToken/voter-token.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,12 @@ import { WalletService } from './ethereum/wallet.service';
 export class AppComponent implements OnInit{
   title = 'voter-coin-dapp';
 
-  constructor(private walletService : WalletService) {
+  constructor(
+    private walletService : WalletService,
+    private voterTokenService: VoterTokenService) {
   }
   ngOnInit(): void {
-    this.walletService.connect();
+    this.walletService.connectWallet();
   }
 }
 
