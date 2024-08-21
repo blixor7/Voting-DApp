@@ -29,6 +29,7 @@
     "@angular/compiler-cli": "^18.0.0",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@types/jasmine": "~5.1.0",
+    "chai": "4.3.7",
     "ethers": "^6.13.2",
     "hardhat": "^2.22.8",
     "jasmine-core": "~5.1.0",
