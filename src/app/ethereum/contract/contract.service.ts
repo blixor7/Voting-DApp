@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Contract, ethers } from 'ethers';
 import { WalletService } from '../wallet/wallet.service';
-import { from, Observable } from 'rxjs';
 
 import { CommonDataService } from '../../common-data/common-data.service';
-import { CONTRACT, CONTRACT_ADDRESS, NETWORK, PROVIDER, SIGNER } from '../../common-data/common-data.keys';
-import { SIGNAL } from '@angular/core/primitives/signals';
+import { CONTRACT, CONTRACT_ADDRESS, CONTRACT_OWNER, NETWORK, PROVIDER, SIGNER, SIGNER_ADDRESS } from '../../common-data/common-data.keys';
 
 const VoterTokenabi = require("./../../../../artifacts/contracts/VoterToken.sol/VoterToken.json").abi;
 const ReusableVotingContractabi = require("./../../../../artifacts/contracts/ReusableVotingContract.sol/ReusableVotingContract.json").abi;
@@ -18,8 +16,10 @@ export class ContractService {
 
   public provider: any;
   public signer: any;
+  public signerAddress: any;
   public network: any;
   public contract: any;
+  public contractOwnerAddress: any;
 
   constructor(
     private walletService: WalletService,
@@ -68,14 +68,16 @@ export class ContractService {
     this.commonData.setData(PROVIDER, this.provider);
     this.commonData.setData(NETWORK, this.network);
     this.commonData.setData(SIGNER, this.signer);
+    this.commonData.setData(SIGNER_ADDRESS, await this.signer.getAddress());
     this.commonData.setData(CONTRACT, this.contract);
     this.commonData.setData(CONTRACT_ADDRESS, await this.contract.getAddress());
+    this.commonData.setData(CONTRACT_OWNER, await this.contract.owner());
 
-    console.log("Provider", this.network);
-    console.log("Signer address:", await this.signer.getAddress());
-    console.log("Contract Name ",await this.contract.name());
-    console.log("Contract Address ",await this.contract.getAddress());
-    console.log("Owner Address ",await this.contract.owner());
+    // console.log("Provider", this.network);
+    // console.log("Signer address:", await this.signer.getAddress());
+    // console.log("Contract Name ",await this.contract.name());
+    // console.log("Contract Address ",await this.contract.getAddress());
+    // console.log("Owner Address ",await this.contract.owner());
   }
 
   connectWithDefaultProvider = async () => {

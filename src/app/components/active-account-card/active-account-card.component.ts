@@ -3,7 +3,9 @@ import { ChangeDetectorRef } from '@angular/core';
 
 import { ContractService } from '../../ethereum/contract/contract.service';
 import { CommonDataService } from '../../common-data/common-data.service';
-import { CONTRACT, CONTRACT_ADDRESS } from '../../common-data/common-data.keys';
+import { CONTRACT, CONTRACT_ADDRESS, CONTRACT_OWNER, SIGNER_ADDRESS } from '../../common-data/common-data.keys';
+import { combineLatest, map } from 'rxjs';
+import { CommonDataUtilService } from '../../common-data/common-data.util.service';
 
 @Component({
   selector: 'app-active-account-card',
@@ -13,15 +15,18 @@ import { CONTRACT, CONTRACT_ADDRESS } from '../../common-data/common-data.keys';
 export class ActiveAccountCardComponent implements OnInit{
 
   loggedInAccount: string | undefined;
+  isThisOwner: boolean | undefined;
 
-  constructor(private commonData: CommonDataService){
-
+  constructor(
+    private cd: CommonDataService, 
+    private cdUtil: CommonDataUtilService){
   }
+
   ngOnInit(): void {
-    this.commonData.getData(CONTRACT_ADDRESS).subscribe(value => {
-      this.loggedInAccount = value;
-    })
+    this.cd.getData(CONTRACT_ADDRESS).subscribe(value => {
+      // this.loggedInAccount = value;
+      if(value) // to avoid initial null value from common data service
+        this.loggedInAccount = this.cdUtil.simplifyAcctAddress(value);
+    });
   }
-
-  
 }
