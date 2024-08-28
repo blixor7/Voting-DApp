@@ -16,7 +16,6 @@ export class WalletService {
     try{
       if(!this.ethereum) return alert("Please install meta mask");
       const accounts = await this.ethereum.request({method: 'eth_requestAccounts'});
-      console.log(accounts[0]);
     }
     catch(e){
        throw new Error("No ethereum object found")
