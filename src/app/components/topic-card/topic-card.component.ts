@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-topic-card',
@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './topic-card.component.css'
 })
 export class TopicCardComponent {
+  @Input() topicName: string | undefined;
 
+  @Input() votingEvent: any;
 }

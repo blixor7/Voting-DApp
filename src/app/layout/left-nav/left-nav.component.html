@@ -1,6 +1,11 @@
 <div class="sidenav">
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#clients">Clients</a>
-    <a href="#contact">Contact</a>
+    @if(this.cdUtil.isOwnerLoggedIn() | async) {
+        <button>Add new topic</button>
+    }
+    @for (topic of topicsList; track topic.name) {
+        <!-- <a href="#">{{topic.name}}</a> -->
+        <app-topic-card [topicName]=topic.name></app-topic-card>
+    } @empty {
+        <li>There are no items.</li>
+    }
 </div>

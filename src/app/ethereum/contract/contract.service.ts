@@ -99,4 +99,9 @@ export class ContractService {
       addressForContractDeployment,ReusableVotingContractabi);
     console.log("JsonRpc Provider");
   }
+
+  /** ********************************************************************/
+
+  
+
 }
