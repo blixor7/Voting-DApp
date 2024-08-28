@@ -1,0 +1,43 @@
+app-header {
+    /* display: block; */
+    height: var(--header-height);
+    width: 100%;
+    /* overflow: hidden; */
+    background-color: #e19595;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    /* padding: 0 0;
+    margin: 0 0; */
+}
+
+app-left-nav {
+    height: 100%;
+    width: var(--left-nav-width);
+    margin-top: var(--header-height); /*Same as the height of the header*/
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+app-body {
+    height: 100%;
+    width: 100%;
+    background-color: #bcbcbc;
+    margin-left: var(--left-nav-width); /* Same as the width of the left-nav */
+    margin-top: var(--header-height); /*Same as the height of the header*/
+    font-size: 28px; /* Increased text to enable scrolling */
+    position: fixed;
+    /* z-index: 1; */
+    padding: 0px 10px;
+
+    left: 0;
+    top: 0;
+
+    overflow-x: hidden;
+}
