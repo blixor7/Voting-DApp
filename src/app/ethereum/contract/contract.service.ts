@@ -4,7 +4,7 @@ import { WalletService } from '../wallet/wallet.service';
 import { from, Observable } from 'rxjs';
 
 import { CommonDataService } from '../../common-data/common-data.service';
-import { CONTRACT, NETWORK, PROVIDER, SIGNER } from '../../common-data/common-data-keys';
+import { CONTRACT, NETWORK, PROVIDER, SIGNER } from '../../common-data/common-data.keys';
 import { SIGNAL } from '@angular/core/primitives/signals';
 
 const VoterTokenabi = require("./../../../../artifacts/contracts/VoterToken.sol/VoterToken.json").abi;
