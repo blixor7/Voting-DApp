@@ -23,6 +23,13 @@ contract ReusableVotingContract {
         bool exists; //this is set to false for a non exist instead of out of bounds or null pointer in other languages
     }
 
+    struct VotingEventSummary {
+        string topic;
+        Option[] options;
+        bool votingActive;
+        bool exists;
+    }
+
     address public owner;
     uint256 public eventCount;
     mapping(uint256 => VotingEvent) public votingEvents;
@@ -98,5 +105,20 @@ contract ReusableVotingContract {
 
     function getOptions(uint256 eventId) external view validEvent(eventId) returns (Option[] memory) {
         return votingEvents[eventId].options;
+    }
+
+    function getAllVotingEvents() external view returns (VotingEventSummary[] memory) {
+        VotingEventSummary[] memory summaries = new VotingEventSummary[](eventCount);
+
+        for (uint i = 0; i < eventCount; i++) {
+            VotingEvent storage votingEvent = votingEvents[i];
+
+            summaries[i].topic = votingEvent.topic;
+            summaries[i].options = votingEvent.options;
+            summaries[i].votingActive = votingEvent.votingActive;
+            summaries[i].exists = votingEvent.exists;
+        }
+
+        return summaries;
     }
 }

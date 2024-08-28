@@ -101,4 +101,30 @@ describe("ReusableVotingContract", function () {
         expect(options[1].name).to.equal("Dog");
         expect(options[2].name).to.equal("Elephant");
     });
+
+    it("should return all voting events", async function () {
+        // Create a couple of voting events
+        await votingContract.startVotingEvent("Best Programming Language", ["Solidity", "Rust", "Go"]);
+        await votingContract.startVotingEvent("Best Blockchain", ["Ethereum", "Polkadot", "Solana"]);
+
+        // Get all voting events
+        const votingEvents = await votingContract.getAllVotingEvents();
+
+        // Check that there are 2 events
+        expect(votingEvents.length).to.equal(2);
+
+        // Check the first event
+        expect(votingEvents[0].topic).to.equal("Best Programming Language");
+        expect(votingEvents[0].options.length).to.equal(3);
+        expect(votingEvents[0].options[0].name).to.equal("Solidity");
+        expect(votingEvents[0].options[1].name).to.equal("Rust");
+        expect(votingEvents[0].options[2].name).to.equal("Go");
+
+        // Check the second event
+        expect(votingEvents[1].topic).to.equal("Best Blockchain");
+        expect(votingEvents[1].options.length).to.equal(3);
+        expect(votingEvents[1].options[0].name).to.equal("Ethereum");
+        expect(votingEvents[1].options[1].name).to.equal("Polkadot");
+        expect(votingEvents[1].options[2].name).to.equal("Solana");
+    });
 });
