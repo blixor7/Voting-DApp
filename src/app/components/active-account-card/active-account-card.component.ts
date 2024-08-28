@@ -14,9 +14,9 @@ export class ActiveAccountCardComponent implements OnInit{
 
   }
   ngOnInit(): void {
-    this.contractService.getLoggedInAccount().subscribe(val => {
-      this.loggedInAccount = val;
-    });
+    // this.contractService.getLoggedInAccount().subscribe(val => {
+    //   this.loggedInAccount = val;
+    // });
     // setTimeout(()=>{
     //   this.loggedInAccount = this.contractService.getLoggedInAccount();
     // }, 3000);
