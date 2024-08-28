@@ -1,0 +1,9 @@
+.header-body {
+    display: inline-flex;
+}
+
+app-active-account-card {
+    position: fixed;
+    right: 0;
+    /* float: right; */
+}

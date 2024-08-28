@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Contract, ethers } from 'ethers';
 import { WalletService } from '../wallet/wallet.service';
+import { from, Observable } from 'rxjs';
 
 const VoterTokenabi = require("./../../../../artifacts/contracts/VoterToken.sol/VoterToken.json").abi;
 const ReusableVotingContractabi = require("./../../../../artifacts/contracts/ReusableVotingContract.sol/ReusableVotingContract.json").abi;
@@ -65,6 +66,8 @@ export class ContractService {
     // that MetaMask manages for the user.
     this.signer = await this.provider.getSigner();
     console.log("Signer address:", await this.signer.getAddress());
+
+    return this.signer;
   }
 
   connectWithJsonRpcProvider = async () => {
@@ -86,7 +89,11 @@ export class ContractService {
     console.log("Contract Name ",await this.contract.name())
     console.log("Contract Address ",await this.contract.getAddress())
     console.log("Owner Address ",await this.contract.owner())
+
+    return this.contract;
   }
 
-
+  getLoggedInAccount() : Observable<any>{
+    return from(this.signer.getAddress());
+  }
 }
