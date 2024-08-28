@@ -4,7 +4,7 @@ import { WalletService } from '../wallet/wallet.service';
 import { from, Observable } from 'rxjs';
 
 import { CommonDataService } from '../../common-data/common-data.service';
-import { CONTRACT, NETWORK, PROVIDER, SIGNER } from '../../common-data/common-data.keys';
+import { CONTRACT, CONTRACT_ADDRESS, NETWORK, PROVIDER, SIGNER } from '../../common-data/common-data.keys';
 import { SIGNAL } from '@angular/core/primitives/signals';
 
 const VoterTokenabi = require("./../../../../artifacts/contracts/VoterToken.sol/VoterToken.json").abi;
@@ -69,6 +69,7 @@ export class ContractService {
     this.commonData.setData(NETWORK, this.network);
     this.commonData.setData(SIGNER, this.signer);
     this.commonData.setData(CONTRACT, this.contract);
+    this.commonData.setData(CONTRACT_ADDRESS, await this.contract.getAddress());
 
     console.log("Provider", this.network);
     console.log("Signer address:", await this.signer.getAddress());

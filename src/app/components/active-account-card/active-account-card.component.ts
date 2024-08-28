@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
+
 import { ContractService } from '../../ethereum/contract/contract.service';
+import { CommonDataService } from '../../common-data/common-data.service';
+import { CONTRACT, CONTRACT_ADDRESS } from '../../common-data/common-data.keys';
 
 @Component({
   selector: 'app-active-account-card',
@@ -10,17 +14,13 @@ export class ActiveAccountCardComponent implements OnInit{
 
   loggedInAccount: string | undefined;
 
-  constructor(private contractService: ContractService){
+  constructor(private commonData: CommonDataService){
 
   }
   ngOnInit(): void {
-    // this.contractService.getLoggedInAccount().subscribe(val => {
-    //   this.loggedInAccount = val;
-    // });
-    // setTimeout(()=>{
-    //   this.loggedInAccount = this.contractService.getLoggedInAccount();
-    // }, 3000);
-    
+    this.commonData.getData(CONTRACT_ADDRESS).subscribe(value => {
+      this.loggedInAccount = value;
+    })
   }
 
   
