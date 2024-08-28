@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WalletService } from './ethereum/wallet/wallet.service';
-import { VoterTokenService } from './ethereum/voterToken/voter-token.service';
+import { ContractService } from './ethereum/contract/contract.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent implements OnInit{
 
   constructor(
     private walletService : WalletService,
-    private voterTokenService: VoterTokenService) {
+    private contractService: ContractService) {
   }
   ngOnInit(): void {
     this.walletService.connectWallet();

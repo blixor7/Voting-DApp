@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { VoterTokenService } from './voter-token.service';
+import { ContractService } from './contract.service';
 
-describe('VoterTokenService', () => {
-  let service: VoterTokenService;
+describe('ContractService', () => {
+  let service: ContractService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(VoterTokenService);
+    service = TestBed.inject(ContractService);
   });
 
   it('should be created', () => {
