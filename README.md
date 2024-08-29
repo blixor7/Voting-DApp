@@ -16,7 +16,7 @@ npx hardhat ignition deploy ./ignition/modules/ReusableVotingContract.ts --netwo
 ### Deploy contract via scripts
 npx hardhat run --network localhost ./scripts/0_deploy.js
 
-npx hardhat run --network localhost ./scripts/1_seed_data_.js
+npx hardhat run --network localhost ./scripts/1_seed_data.js
 
 
 ## Development server
