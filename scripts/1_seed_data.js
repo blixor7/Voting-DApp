@@ -54,22 +54,22 @@ async function main() {
   console.log(`user2 voted\n`);
 
   //As a user3 vote
-  await ReusableVotingContract.connect(user3).vote(0,0);//Best Fruit -> Apple
-  await ReusableVotingContract.connect(user3).vote(1,1);//Best Vegetable -> Brinjal
-  await ReusableVotingContract.connect(user3).vote(2,1);//Best Animated Show -> South Park
-  console.log(`user3 voted\n`);
+  // await ReusableVotingContract.connect(user3).vote(0,0);//Best Fruit -> Apple
+  // await ReusableVotingContract.connect(user3).vote(1,1);//Best Vegetable -> Brinjal
+  // await ReusableVotingContract.connect(user3).vote(2,1);//Best Animated Show -> South Park
+  // console.log(`user3 voted\n`);
 
-  //As a user4 vote
-  await ReusableVotingContract.connect(user4).vote(0,1);//Best Fruit -> Banana
-  await ReusableVotingContract.connect(user4).vote(1,0);//Best Vegetable -> Tomato
-  await ReusableVotingContract.connect(user4).vote(2,1);//Best Animated Show -> South Park
-  console.log(`user4 voted\n`);
+  // //As a user4 vote
+  // await ReusableVotingContract.connect(user4).vote(0,1);//Best Fruit -> Banana
+  // await ReusableVotingContract.connect(user4).vote(1,0);//Best Vegetable -> Tomato
+  // await ReusableVotingContract.connect(user4).vote(2,1);//Best Animated Show -> South Park
+  // console.log(`user4 voted\n`);
 
-  //As a user5 vote
-  await ReusableVotingContract.connect(user5).vote(0,0);//Best Fruit -> Apple
-  //Best Vegetable -> NOT VOTED
-  await ReusableVotingContract.connect(user5).vote(2,3);//Best Animated Show -> American Dad
-  console.log(`user5 voted\n`);
+  // //As a user5 vote
+  // await ReusableVotingContract.connect(user5).vote(0,0);//Best Fruit -> Apple
+  // //Best Vegetable -> NOT VOTED
+  // await ReusableVotingContract.connect(user5).vote(2,3);//Best Animated Show -> American Dad
+  // console.log(`user5 voted\n`);
 
 
 

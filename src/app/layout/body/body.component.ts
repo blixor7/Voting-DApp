@@ -22,7 +22,6 @@ export class BodyComponent implements OnInit{
 
     combineLatest([this.cd.getData(VOTING_EVENTS_LIST), this.cd.getData(SELECTED_TOPIC)])
       .subscribe(([votingEventsList, selectedId]) => {
-        if(selectedId==null) selectedId = 0; // initially it emits null
         this.votingEvent = votingEventsList[selectedId];
       });
   }

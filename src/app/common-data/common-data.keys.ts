@@ -1,7 +1,9 @@
 // common-data-keys.ts
 
 export const PROVIDER = 'provider';
+
 export const NETWORK = 'network';
+export const CHAIN_ID = 'chain_id';
 
 export const SIGNER = 'signer';
 export const SIGNER_ADDRESS = 'signer_address';

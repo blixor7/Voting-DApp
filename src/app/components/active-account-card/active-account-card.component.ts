@@ -14,12 +14,14 @@ import { CommonDataUtilService } from '../../common-data/common-data.util.servic
 })
 export class ActiveAccountCardComponent implements OnInit{
 
+  connected: boolean | undefined;
   loggedInAccount: string | undefined;
   isThisOwner: boolean | undefined;
 
   constructor(
     private cd: CommonDataService, 
-    private cdUtil: CommonDataUtilService){
+    private cdUtil: CommonDataUtilService,
+    private contractService: ContractService){
   }
 
   ngOnInit(): void {
@@ -27,5 +29,11 @@ export class ActiveAccountCardComponent implements OnInit{
       if(value) // to avoid initial null value from common data service
         this.loggedInAccount = this.cdUtil.simplifyAcctAddress(value);
     });
+    this.cd.getData(CONTRACT).subscribe(value => {if(value) this.connected = true;});
+  }
+
+  connectToMetamask(){
+    console.log("connectToMetamask()");
+    this.contractService.setupEthereumConnection();
   }
 }

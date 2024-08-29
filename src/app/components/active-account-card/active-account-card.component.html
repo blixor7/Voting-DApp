@@ -2,3 +2,7 @@ Account#
 <div>
     {{loggedInAccount}}
 </div>
+
+<button [disabled]=connected (click)=connectToMetamask()>Connect</button>
+
+<button [disabled]=!connected (click)=connectToMetamask()>Disconnect</button>

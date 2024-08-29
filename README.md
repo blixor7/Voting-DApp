@@ -19,6 +19,13 @@ npx hardhat run --network localhost ./scripts/0_deploy.js
 npx hardhat run --network localhost ./scripts/1_seed_data.js
 
 
+## Details about contract
+
+      // summaries[i].topic = votingEvent.topic;
+      // summaries[i].options = votingEvent.options;
+      // summaries[i].votingActive = votingEvent.votingActive;
+      // summaries[i].exists = votingEvent.exists;
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

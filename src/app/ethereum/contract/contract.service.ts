@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Contract, ethers } from 'ethers';
+import { Contract, BigNumberish, ethers, getUint } from 'ethers';
 import { WalletService } from '../wallet/wallet.service';
 
 import { CommonDataService } from '../../common-data/common-data.service';
-import { CONTRACT, CONTRACT_ADDRESS, CONTRACT_OWNER, NETWORK, PROVIDER, SIGNER, SIGNER_ADDRESS, VOTING_EVENTS_LIST } from '../../common-data/common-data.keys';
+import { CHAIN_ID, CONTRACT, CONTRACT_ADDRESS, CONTRACT_OWNER, NETWORK, PROVIDER, SIGNER, SIGNER_ADDRESS, VOTING_EVENTS_LIST } from '../../common-data/common-data.keys';
 import { from, Observable, of } from 'rxjs';
+
+const config = require('./../../../../config.json');
+// const { chainId } = await ethers.provider.getNetwork()
 
 const VoterTokenabi = require("./../../../../artifacts/contracts/VoterToken.sol/VoterToken.json").abi;
 const ReusableVotingContractabi = require("./../../../../artifacts/contracts/ReusableVotingContract.sol/ReusableVotingContract.json").abi;
@@ -19,6 +22,7 @@ export class ContractService {
   public signer: any;
   public signerAddress: any;
   public network: any;
+  public chainId: any;
   public contract: any;
   public contractOwnerAddress: any;
 
@@ -55,6 +59,15 @@ export class ContractService {
     // await this.connectWithJsonRpcProvider();
   }
 
+  // async presetup(provider: any){
+  //   this.provider = provider;
+  //   this.network = await this.provider.getNetwork();
+  //   this.signer = await this.provider.getSigner();
+  //   this.signerAddress = await this.signer.getAddress();
+  //   this.chainId = this.network.chainId;
+  //   console.log(this.chainId)
+  // }
+
   async connectWithGivenProvider(
       provider: any, 
       address: string, 
@@ -63,25 +76,38 @@ export class ContractService {
     this.provider = provider;
     this.network = await this.provider.getNetwork();
     this.signer = await this.provider.getSigner();
+    this.signerAddress = await this.signer.getAddress();
+    // this.chainId = this.network.chainId;
+
     this.contract = new Contract(address, abi, this.provider);
+
 
     //store data in common data service
     this.commonData.setData(PROVIDER, this.provider);
     this.commonData.setData(NETWORK, this.network);
     this.commonData.setData(SIGNER, this.signer);
     this.commonData.setData(SIGNER_ADDRESS, await this.signer.getAddress());
+    
+    //store data in common data service
+    this.commonData.setData(PROVIDER, this.provider);
+    this.commonData.setData(NETWORK, this.network);
+    this.commonData.setData(SIGNER, this.signer);
+    this.commonData.setData(SIGNER_ADDRESS, await this.signer.getAddress());
 
-    this.commonData.setData(CONTRACT, this.contract);
-    this.commonData.setData(CONTRACT_ADDRESS, await this.contract.getAddress());
-    this.commonData.setData(CONTRACT_OWNER, await this.contract.owner());
+    console.log("Chain Id", this.chainId);
+    // if(this.chainId.charAt(this.chainId.length-1)==='n'){
+    //   this.chainId = this.chainId.slice(0,this.chainId.length-1);
+    // }
 
-    this.commonData.setData(VOTING_EVENTS_LIST, await this.contract.getAllVotingEvents());
+    await this.fetchAndSaveAllData();
 
-    provider.on('accountsChanged', (accounts: any) => {
-      console.log('Accounts changed:', accounts);
-    });
+    // provider.on('accountsChanged', (accounts: any) => {
+    //   console.log('Accounts changed:', accounts);
+    // });
+
 
     // console.log("Provider", this.network);
+    // console.log("Chain Id", this.network.chainId);
     // console.log("Signer address:", await this.signer.getAddress());
     // console.log("Contract Name ",await this.contract.name());
     // console.log("Contract Address ",await this.contract.getAddress());
@@ -108,11 +134,50 @@ export class ContractService {
     console.log("JsonRpc Provider");
   }
 
-  /***********************************************************************/
+  async fetchAndSaveAllData(){
+    //store data in common data service
+    this.commonData.setData(PROVIDER, this.provider);
 
+    this.commonData.setData(NETWORK, this.network);
+    this.commonData.setData(CHAIN_ID, this.chainId);
+
+    this.commonData.setData(SIGNER, this.signer);
+    this.commonData.setData(SIGNER_ADDRESS, await this.signer.getAddress());
+
+    this.commonData.setData(CONTRACT, this.contract);
+    this.commonData.setData(CONTRACT_ADDRESS, await this.contract.getAddress());
+    this.commonData.setData(CONTRACT_OWNER, await this.contract.owner());
+
+    this.commonData.setData(VOTING_EVENTS_LIST, await this.contract.getAllVotingEvents());
+  }
+
+  /***********************************************************************/
+  /*** All Readonly Operations on Smart Contract ***/
    getAllVotingEvents(): any {
     return this.contract.getAllVotingEvents();
   }
+
+  stopVoting(eventId: any) {
+    console.log("stopping eventId ", eventId);
+    const eventIdNo: BigNumberish = eventId;
+
+    try {
+        this.contract.connect(this.signer)
+            .endVoting(eventIdNo)
+            .then(() => {
+                // Handle successful endVoting
+                console.log("Voting ended successfully");
+                // Optionally, update your UI or state based on the successful end
+            })
+            .catch((error: any) => {
+                console.error("Error ending voting:", error);
+                // Handle the error, e.g., display an error message to the user
+            });
+    } catch (error) {
+        console.error("Error connecting to contract or signer:", error);
+        // Handle errors related to connecting to the contract or signer
+    }
+}
 
   /***********************************************************************/
 
