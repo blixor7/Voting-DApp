@@ -1,3 +1,14 @@
 <div>
-    {{topicName}}
+    Topic: {{votingEvent[0]}} <br>
+    <!-- Options: {{votingEvent[1]}} -->
+    Options: 
+     <ul>
+     @for(option of votingEvent[1];track option; let index = $index){
+        <li>{{option[0]}}</li>
+     }
+    </ul>
+    Is VotingActive: {{votingEvent[2]}} <br>
+    Is Exists: {{votingEvent[3]}} <br>
+    <button (click)="selectTopic()">Select topic</button>
+    <hr>
 </div>

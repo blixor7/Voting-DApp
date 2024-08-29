@@ -9,13 +9,13 @@ const { ethers } = require("hardhat");
 
 async function main() {
   //Fetch contract to be deployed
-  const VoterToken = await ethers.getContractFactory("VoterToken");
+  const reusableVotingContract = await ethers.getContractFactory("ReusableVotingContract");
   
   //Deploy the contract
-  const voterToken = await VoterToken.deploy();
-  await voterToken.deployed();
+  const reusableVotingContractDeployment = await reusableVotingContract.deploy();
+  // await reusableVotingContractDeployment.deployed();
 
-  console.log(`voterToken deployed to: ${voterToken.address}`);
+  console.log(`reusableVotingContractDeployment deployed to: ${reusableVotingContractDeployment.address}`);
 }
 
 main()

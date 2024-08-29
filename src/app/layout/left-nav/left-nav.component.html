@@ -2,10 +2,19 @@
     @if(this.cdUtil.isOwnerLoggedIn() | async) {
         <button>Add new topic</button>
     }
-    @for (topic of topicsList; track topic.name) {
+    <hr>
+    @for (topic of topicsList2; track topic; let index = $index) {
         <!-- <a href="#">{{topic.name}}</a> -->
-        <app-topic-card [topicName]=topic.name></app-topic-card>
+        <app-topic-card [votingEvent]=topic [id]=index></app-topic-card>
     } @empty {
         <li>There are no items.</li>
     }
+
+    <!-- <app-topic-card [votingEvent]=topicsList2[0]></app-topic-card> -->
+
+    <!-- @for (topic of topicsList2; track topic) {
+        <app-topic-card [votingEvent]=topic></app-topic-card>
+    } @empty {
+        <li>There are no items.</li>
+    } -->
 </div>

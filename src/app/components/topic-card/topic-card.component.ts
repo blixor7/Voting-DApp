@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { CommonDataService } from '../../common-data/common-data.service';
+import { SELECTED_TOPIC } from '../../common-data/common-data.keys';
 
 @Component({
   selector: 'app-topic-card',
@@ -6,7 +8,13 @@ import { Component, Input } from '@angular/core';
   styleUrl: './topic-card.component.css'
 })
 export class TopicCardComponent {
-  @Input() topicName: string | undefined;
-
   @Input() votingEvent: any;
+  @Input() id: any;
+
+  constructor(private cd: CommonDataService){}
+
+  selectTopic(){
+    console.log("selectTopic()");
+    this.cd.setData(SELECTED_TOPIC, this.id);
+  }
 }

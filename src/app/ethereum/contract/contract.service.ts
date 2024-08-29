@@ -3,7 +3,8 @@ import { Contract, ethers } from 'ethers';
 import { WalletService } from '../wallet/wallet.service';
 
 import { CommonDataService } from '../../common-data/common-data.service';
-import { CONTRACT, CONTRACT_ADDRESS, CONTRACT_OWNER, NETWORK, PROVIDER, SIGNER, SIGNER_ADDRESS } from '../../common-data/common-data.keys';
+import { CONTRACT, CONTRACT_ADDRESS, CONTRACT_OWNER, NETWORK, PROVIDER, SIGNER, SIGNER_ADDRESS, VOTING_EVENTS_LIST } from '../../common-data/common-data.keys';
+import { from, Observable, of } from 'rxjs';
 
 const VoterTokenabi = require("./../../../../artifacts/contracts/VoterToken.sol/VoterToken.json").abi;
 const ReusableVotingContractabi = require("./../../../../artifacts/contracts/ReusableVotingContract.sol/ReusableVotingContract.json").abi;
@@ -69,9 +70,12 @@ export class ContractService {
     this.commonData.setData(NETWORK, this.network);
     this.commonData.setData(SIGNER, this.signer);
     this.commonData.setData(SIGNER_ADDRESS, await this.signer.getAddress());
+
     this.commonData.setData(CONTRACT, this.contract);
     this.commonData.setData(CONTRACT_ADDRESS, await this.contract.getAddress());
     this.commonData.setData(CONTRACT_OWNER, await this.contract.owner());
+
+    this.commonData.setData(VOTING_EVENTS_LIST, await this.contract.getAllVotingEvents());
 
     // console.log("Provider", this.network);
     // console.log("Signer address:", await this.signer.getAddress());
@@ -102,6 +106,8 @@ export class ContractService {
 
   /** ********************************************************************/
 
-  
+   getAllVotingEvents(): any {
+    return this.contract.getAllVotingEvents();
+  }
 
 }
