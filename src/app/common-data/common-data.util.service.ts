@@ -21,8 +21,8 @@ export class CommonDataUtilService {
       this.commonData.getData(SIGNER_ADDRESS),
       this.commonData.getData(CONTRACT_OWNER)
     ]).pipe(map(([signerAddress, owner]) => {
-      console.log("Signer: ", signerAddress);
-      console.log("Owner:  ", owner);
+      // console.log("Signer: ", signerAddress);
+      // console.log("Owner:  ", owner);
       return signerAddress === owner;
     }));
   }

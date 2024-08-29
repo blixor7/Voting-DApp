@@ -77,6 +77,10 @@ export class ContractService {
 
     this.commonData.setData(VOTING_EVENTS_LIST, await this.contract.getAllVotingEvents());
 
+    provider.on('accountsChanged', (accounts: any) => {
+      console.log('Accounts changed:', accounts);
+    });
+
     // console.log("Provider", this.network);
     // console.log("Signer address:", await this.signer.getAddress());
     // console.log("Contract Name ",await this.contract.name());
@@ -104,10 +108,13 @@ export class ContractService {
     console.log("JsonRpc Provider");
   }
 
-  /** ********************************************************************/
+  /***********************************************************************/
 
    getAllVotingEvents(): any {
     return this.contract.getAllVotingEvents();
   }
+
+  /***********************************************************************/
+
 
 }

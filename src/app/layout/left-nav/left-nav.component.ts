@@ -24,7 +24,7 @@ export class LeftNavComponent implements OnInit{
   ngOnInit(): void {
 
     this.cd.getData(VOTING_EVENTS_LIST).subscribe(value => {
-      console.log("via common data ",value);
+      // console.log("via common data ",value);
       
       this.topicsList2 = <any>value;
 
@@ -33,13 +33,13 @@ export class LeftNavComponent implements OnInit{
       // summaries[i].votingActive = votingEvent.votingActive;
       // summaries[i].exists = votingEvent.exists;
 
-      console.log((<any>this.topicsList2[0]).length)
-      console.log(this.topicsList2[0][0]) //topic
-      console.log((<any>this.topicsList2[0][1]).length)
-      console.log(this.topicsList2[0][1][0][0]) //options[0]
-      console.log(this.topicsList2[0][1][1][0]) //options[1]
-      console.log(this.topicsList2[0][2]) //votingActive
-      console.log(this.topicsList2[0][3]) //exists
+      // console.log((<any>this.topicsList2[0]).length)
+      // console.log(this.topicsList2[0][0]) //topic
+      // console.log((<any>this.topicsList2[0][1]).length)
+      // console.log(this.topicsList2[0][1][0][0]) //options[0]
+      // console.log(this.topicsList2[0][1][1][0]) //options[1]
+      // console.log(this.topicsList2[0][2]) //votingActive
+      // console.log(this.topicsList2[0][3]) //exists
     });
   }
 }

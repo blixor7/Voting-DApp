@@ -24,7 +24,6 @@ export class ActiveAccountCardComponent implements OnInit{
 
   ngOnInit(): void {
     this.cd.getData(SIGNER_ADDRESS).subscribe(value => {
-      // this.loggedInAccount = value;
       if(value) // to avoid initial null value from common data service
         this.loggedInAccount = this.cdUtil.simplifyAcctAddress(value);
     });

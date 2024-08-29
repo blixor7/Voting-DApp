@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-existing-topic',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './existing-topic.component.css'
 })
 export class ExistingTopicComponent {
-
+  @Input() selectedVotingEvent: any;
 }

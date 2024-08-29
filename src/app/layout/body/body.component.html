@@ -1,2 +1,11 @@
-<div>body works!</div>
-{{votingEvent}}
+@if(isOwner){
+    @if(isNewTopic){
+        <app-new-topic></app-new-topic>
+    }
+    @else {
+        <app-existing-topic [selectedVotingEvent]="votingEvent"></app-existing-topic>
+    }
+}
+@else {
+    <app-selected-topic [selectedVotingEvent]="votingEvent"></app-selected-topic>
+}

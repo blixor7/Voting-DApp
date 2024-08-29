@@ -14,7 +14,6 @@ export class TopicCardComponent {
   constructor(private cd: CommonDataService){}
 
   selectTopic(){
-    console.log("selectTopic()");
     this.cd.setData(SELECTED_TOPIC, this.id);
   }
 }
