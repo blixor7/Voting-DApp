@@ -1,6 +1,10 @@
-# Voter Coin Dapp
+# Voter Coin
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.7.
+
+For Solidity version 0.8.24 is used.
+
+For communication with Blockchain Ether.js version 6.13.2 and Hardhat version 2.22.8 are used.
 
 ## Local testing of this DApp
 
@@ -16,8 +20,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ### Deploy contract via scripts
 `npx hardhat run --network localhost ./scripts/0_deploy.js`
 
+### To populate blockchain with test data via scripts
+
 `npx hardhat run --network localhost ./scripts/1_seed_data.js`
 
+### Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Details about contract
 
@@ -33,6 +42,4 @@ getAllVotingEvents()
 
 ![drawio design](./docs/voter-coin-dapp-docs.drawio.svg)
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
