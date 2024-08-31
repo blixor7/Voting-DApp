@@ -29,6 +29,10 @@ getAllVotingEvents()
     - votingActive
     - exists
 
+## App UI design
+
+![drawio design](./docs/voter-coin-dapp-docs.drawio.svg)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
