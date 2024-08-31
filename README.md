@@ -5,26 +5,29 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Local testing of this DApp
 
 ### Cmd to run local ethereum node
-npx hardhat node
+`npx hardhat node`
 
 ### Cmd to compile .sol files
-npx hardhat compile
+`npx hardhat compile`
 
 ### Deploy contract via ignition
-npx hardhat ignition deploy ./ignition/modules/ReusableVotingContract.ts --network localhost
+`npx hardhat ignition deploy ./ignition/modules/ReusableVotingContract.ts --network localhost`
 
 ### Deploy contract via scripts
-npx hardhat run --network localhost ./scripts/0_deploy.js
+`npx hardhat run --network localhost ./scripts/0_deploy.js`
 
-npx hardhat run --network localhost ./scripts/1_seed_data.js
+`npx hardhat run --network localhost ./scripts/1_seed_data.js`
 
 
 ## Details about contract
 
-      // summaries[i].topic = votingEvent.topic;
-      // summaries[i].options = votingEvent.options;
-      // summaries[i].votingActive = votingEvent.votingActive;
-      // summaries[i].exists = votingEvent.exists;
+getAllVotingEvents()
+- summaries
+  - votingEvent
+    - topic
+    - options
+    - votingActive
+    - exists
 
 ## Development server
 
