@@ -154,30 +154,68 @@ export class ContractService {
   /***********************************************************************/
   /*** All Readonly Operations on Smart Contract ***/
    getAllVotingEvents(): any {
-    return this.contract.getAllVotingEvents();
+    return this.contract.getAllVotingEvents().then((success: any) => {
+        // Handle successfully got all voting events
+        console.log("Obtained all voting events successfully:", success);
+        // Optionally, update your UI or state based on the successful end
+    })
+    .catch((error: any) => {
+        console.error("Error getting all voting events:", error);
+        // Handle the error, e.g., display an error message to the user
+    });
   }
 
-  stopVoting(eventId: any) {
+  async stopVoting(eventId: any) {
     console.log("stopping eventId ", eventId);
     const eventIdNo: BigNumberish = eventId;
+    console.log("stopping eventIdNo ", eventIdNo);
 
+    const currentNonce = await this.provider.getTransactionCount(this.signerAddress);
+    const pendingNonce = await this.provider.getTransactionCount(this.signerAddress, 'pending');
+    console.log('Current nonce:', currentNonce, 'Pending: ', pendingNonce);
+    // this.clearStuckTransactions(pendingNonce);
     try {
-        this.contract.connect(this.signer)
-            .endVoting(eventIdNo)
-            .then(() => {
+        this.contract
+            .connect(this.signer)
+              //TODO: clear stuck nonce to remove explicit currentNonce
+            .endVoting(eventIdNo,{nonce:currentNonce})
+            .then((success: any) => {
                 // Handle successful endVoting
-                console.log("Voting ended successfully");
+                console.log("Voting ended successfully:", success);
                 // Optionally, update your UI or state based on the successful end
             })
             .catch((error: any) => {
                 console.error("Error ending voting:", error);
-                // Handle the error, e.g., display an error message to the user
+                // Handle the error, e.g., display an error message to the user              
             });
     } catch (error) {
         console.error("Error connecting to contract or signer:", error);
         // Handle errors related to connecting to the contract or signer
     }
 }
+
+  async clearStuckTransactions(nonce: number){
+    try {
+      // Create a transaction to cancel the pending one
+      const tx = {
+          to: await this.signer.getAddress(), // Send to your own address
+          value: ethers.parseUnits('0', 'wei'), // Zero value to cancel
+          nonce: nonce, // Use the nonce of the transaction you want to cancel
+          gasLimit: 21000, // Basic gas limit for a simple transaction
+          gasPrice: ethers.parseUnits('1000', 'gwei') // Higher gas price to ensure it is mined
+      };
+
+      // Send the cancellation transaction
+      const txResponse = await this.signer.sendTransaction(tx);
+      console.log('Cancel transaction hash:', txResponse.hash);
+
+      // Wait for the transaction to be mined
+      const txReceipt = await txResponse.wait();
+      console.log('Cancel transaction mined:', txReceipt.transactionHash);
+  } catch (error) {
+      console.error('Error canceling transaction:', error);
+  }
+  }
 
   /***********************************************************************/
 
