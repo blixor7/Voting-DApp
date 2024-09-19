@@ -11,9 +11,11 @@ export class CommonDataUtilService {
   constructor(private commonData: CommonDataService) { }
 
   simplifyAcctAddress(address: string): string {
-    return address.slice(0, 4)
-      .concat("...")
-      .concat(address.slice(address.length - 4, address.length - 1));
+    if(address)
+      return address.slice(0, 4)
+        .concat("...")
+        .concat(address.slice(address.length - 4, address.length));
+    else return "";
   }
 
   isOwnerLoggedIn(): Observable<boolean> {
