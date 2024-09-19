@@ -1,12 +1,13 @@
 <p>selected-topic works!</p>
 {{selectedVotingEvent}}
 
-<h3>{{selectedVotingEvent[0]}}</h3>
-
-<ol>
-@for(option of selectedVotingEvent[1]; track option){
-    <li>
-        <button>{{option[0]}}</button>
-    </li>
+@if(selectedVotingEvent){
+    <h3>{{selectedVotingEvent[0]}}</h3>
+    <ol>
+        @for(option of selectedVotingEvent[1]; track option){
+            <li>
+                <button>{{option[0]}}</button>
+            </li>
+        }
+    </ol>
 }
-</ol>

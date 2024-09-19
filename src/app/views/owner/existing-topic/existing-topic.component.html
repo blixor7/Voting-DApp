@@ -1,10 +1,11 @@
 <p>existing-topic works!</p>
 {{selectedVotingEvent}}
 
-<h3>{{selectedVotingEvent[0]}}</h3>
-
-@if (selectedVotingEvent[2]) {
-    <button (click)=stopVoting()>Stop voting</button>
+@if(selectedVotingEvent){
+    <h3>{{selectedVotingEvent[0]}}</h3>
+    @if (selectedVotingEvent[2]) {
+        <button (click)=stopVoting()>Stop voting</button>
+    }
 }
 
 <button (click)=getAllEvents() >Get All Events</button>
