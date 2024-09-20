@@ -20,4 +20,8 @@ export class CommonDataService {
   getData(key: string): Observable<any> {
     return this.commonData$.pipe(map(data => data[key]));
   }
+
+  getAllData(): Observable<any>{
+    return this.commonData$;
+  }
 }
