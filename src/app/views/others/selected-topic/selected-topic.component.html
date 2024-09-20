@@ -1,12 +1,30 @@
 <p>selected-topic works!</p>
-{{selectedVotingEvent}}
 
 @if(selectedVotingEvent){
+    {{selectedVotingEvent}}
+    Event ID: {{selectedEventId}}
+    @if(selectedVotingEvent[2]){
+        <h3>Voting is Open !</h3>
+    }
+    @else {
+        <h3>Voting is closed !</h3>
+        
+    }
     <h3>{{selectedVotingEvent[0]}}</h3>
     <ol>
         @for(option of selectedVotingEvent[1]; track option){
             <li>
-                <button>{{option[0]}}</button>
+                @if(selectedVotingEvent[2]){
+                    <button (click)="vote()">
+                        {{option[0]}}
+                    </button>
+                }
+                @else {
+                    <div>
+                        {{option[0]}} ➜ 🗳️ votes: {{option[1]}}
+                    </div>
+                }
+
             </li>
         }
     </ol>

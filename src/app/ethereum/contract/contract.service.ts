@@ -114,4 +114,29 @@ export class ContractService {
       // Handle errors related to connecting to the contract or signer
     }
   }
+
+  async submitNewTopic(topicName: string, optionsList: string[]){
+    const currentNonce = await this.ws.getProvider().getTransactionCount(this.ws.getSignerAddress());
+    const pendingNonce = await this.ws.getProvider().getTransactionCount(this.ws.getSignerAddress(), 'pending');
+    console.log('Current nonce:', currentNonce, 'Pending: ', pendingNonce);
+    // this.clearStuckTransactions(pendingNonce);
+    try {
+      this.contract
+        .connect(this.ws.getSigner())
+        //TODO: clear stuck nonce to remove explicit currentNonce
+        .startVotingEvent(topicName, optionsList, { nonce: currentNonce })
+        .then((success: any) => {
+          // Handle successful endVoting
+          console.log("New Topic created successfully:", success);
+          // Optionally, update your UI or state based on the successful end
+        })
+        .catch((error: any) => {
+          console.error("Error ending creation of topic:", error);
+          // Handle the error, e.g., display an error message to the user              
+        });
+    } catch (error) {
+      console.error("Error connecting to contract or signer:", error);
+      // Handle errors related to connecting to the contract or signer
+    }
+  }
 }

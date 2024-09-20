@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonDataUtilService } from '../../common-data/common-data.util.service';
 import { CommonDataService } from '../../common-data/common-data.service';
 import { ContractService } from '../../ethereum/contract/contract.service';
-import { VOTING_EVENTS_LIST } from '../../common-data/common-data.keys';
+import { NEW_TOPIC_INPROGRESS, VOTING_EVENTS_LIST } from '../../common-data/common-data.keys';
 
 @Component({
   selector: 'app-left-nav',
@@ -10,11 +10,11 @@ import { VOTING_EVENTS_LIST } from '../../common-data/common-data.keys';
   styleUrl: './left-nav.component.css'
 })
 export class LeftNavComponent implements OnInit{
-  topicsList = [
-    {name:"Topic 1"}, {name:"Topic 2"}
-  ];
+  // topicsList = [
+  //   {name:"Topic 1"}, {name:"Topic 2"}
+  // ];
 
-  topicsList2 = [];
+  topicsList = [];
 
   constructor(
     public contractService: ContractService,
@@ -26,7 +26,7 @@ export class LeftNavComponent implements OnInit{
     this.cd.getData(VOTING_EVENTS_LIST).subscribe(value => {
       // console.log("via common data ",value);
       
-      this.topicsList2 = <any>value;
+      this.topicsList = <any>value;
 
       // summaries[i].topic = votingEvent.topic;
       // summaries[i].options = votingEvent.options;
@@ -41,5 +41,10 @@ export class LeftNavComponent implements OnInit{
       // console.log(this.topicsList2[0][2]) //votingActive
       // console.log(this.topicsList2[0][3]) //exists
     });
+  }
+
+  addNewTopic(){
+    this.cd.setData(NEW_TOPIC_INPROGRESS, true);
+
   }
 }

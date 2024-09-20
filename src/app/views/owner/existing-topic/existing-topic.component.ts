@@ -10,7 +10,7 @@ import { SELECTED_TOPIC, VOTING_EVENTS_LIST } from '../../../common-data/common-
 })
 export class ExistingTopicComponent implements OnInit{
   @Input() selectedVotingEvent: any;
-  selectedEventId: number = -1;
+  @Input() selectedEventId: number = -1;
 
   constructor(
     private contractService: ContractService,
@@ -18,10 +18,10 @@ export class ExistingTopicComponent implements OnInit{
   ){}
   ngOnInit(): void {
     
-    this.cd.getData(SELECTED_TOPIC)
-           .subscribe(eventId => {
-            this.selectedEventId = eventId;
-            console.log("event id", eventId);});
+    // this.cd.getData(SELECTED_TOPIC)
+    //        .subscribe(eventId => {
+    //         this.selectedEventId = eventId;
+    //         console.log("event id", eventId);});
     
   }
 

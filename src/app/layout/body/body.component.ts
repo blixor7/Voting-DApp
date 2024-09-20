@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonDataService } from '../../common-data/common-data.service';
-import { SELECTED_TOPIC, VOTING_EVENTS_LIST } from '../../common-data/common-data.keys';
+import { NEW_TOPIC_INPROGRESS, SELECTED_TOPIC, VOTING_EVENTS_LIST } from '../../common-data/common-data.keys';
 import { combineLatest, concat, forkJoin, merge } from 'rxjs';
 import { CommonDataUtilService } from '../../common-data/common-data.util.service';
 
@@ -12,6 +12,7 @@ import { CommonDataUtilService } from '../../common-data/common-data.util.servic
 export class BodyComponent implements OnInit{
 
   votingEvent: any = null;
+  votingId: any = null;
 
   isOwner: boolean = false;
   isNewTopic: boolean = false;
@@ -20,9 +21,12 @@ export class BodyComponent implements OnInit{
   ngOnInit(): void {
     this.cdUtil.isOwnerLoggedIn().subscribe(value => this.isOwner = value);
 
+    this.cd.getData(NEW_TOPIC_INPROGRESS).subscribe(status => this.isNewTopic = status);
+
     combineLatest([this.cd.getData(VOTING_EVENTS_LIST), this.cd.getData(SELECTED_TOPIC)])
       .subscribe(([votingEventsList, selectedId]) => {
         this.votingEvent = votingEventsList[selectedId];
+        this.votingId = selectedId;
       });
   }
 

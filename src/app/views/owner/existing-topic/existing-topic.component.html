@@ -1,7 +1,9 @@
 <p>existing-topic works!</p>
-{{selectedVotingEvent}}
+
 
 @if(selectedVotingEvent){
+    {{selectedVotingEvent}}
+    Event ID: {{selectedEventId}}
     <h3>{{selectedVotingEvent[0]}}</h3>
     @if (selectedVotingEvent[2]) {
         <button (click)=stopVoting()>Stop voting</button>
@@ -9,7 +11,7 @@
     <ol>
         @for(option of selectedVotingEvent[1]; track option){
             <li>
-                {{option[0]}}
+                {{option[0]}} ➜ 🗳️ votes: {{option[1]}}
             </li>
         }
     </ol>

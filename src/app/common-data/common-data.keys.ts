@@ -15,6 +15,7 @@ export const CONTRACT_OWNER = 'contract_owner';
 export const VOTING_EVENTS_LIST = 'voting_events_list';
 
 export const SELECTED_TOPIC = 'selected_topic';
+export const NEW_TOPIC_INPROGRESS = "new_topic_inprogress";
 
 export const API_URL = 'https://your-api-endpoint.com';
 export const APP_NAME = 'My Awesome App';

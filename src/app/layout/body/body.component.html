@@ -3,9 +3,9 @@
         <app-new-topic></app-new-topic>
     }
     @else {
-        <app-existing-topic [selectedVotingEvent]="votingEvent"></app-existing-topic>
+        <app-existing-topic [selectedVotingEvent]="votingEvent" [selectedEventId]="votingId"></app-existing-topic>
     }
 }
 @else {
-    <app-selected-topic [selectedVotingEvent]="votingEvent"></app-selected-topic>
+    <app-selected-topic [selectedVotingEvent]="votingEvent" [selectedEventId]="votingId"></app-selected-topic>
 }

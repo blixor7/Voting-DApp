@@ -1,3 +1,23 @@
 <p>new-topic works!</p>
 {{selectedVotingEvent}}
 
+<!-- 
+    topic name string
+    options string list
+-->
+
+
+    <input type="text" id="topic" placeholder="Type Topic name" [(ngModel)]=topicName>
+    <br>Options:
+    <!-- <ol> -->
+        <!-- @for(option of optionsList; track option; let optionIndex = $index){ -->
+        
+            <div *ngFor="let option of optionsList; let i = index">
+                <input type="text" id="option-{{i}}" value="{{option}}" [(ngModel)]=optionsList[i]>
+            </div>
+        <!-- } -->
+    <!-- </ol> -->
+    <button (click)="addAnotherOption()">Add another option</button>
+
+
+<button (click)="submitNewTopic()">Submit New Topic</button>

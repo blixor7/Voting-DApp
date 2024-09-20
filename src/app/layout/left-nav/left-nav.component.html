@@ -1,9 +1,9 @@
 <div class="sidenav">
     @if(this.cdUtil.isOwnerLoggedIn() | async) {
-        <button>Add new topic</button>
+        <button (click)="addNewTopic()">Add new topic</button>
     }
     <hr>
-    @for (topic of topicsList2; track topic; let index = $index) {
+    @for (topic of topicsList; track topic; let index = $index) {
         <!-- <a href="#">{{topic.name}}</a> -->
         <app-topic-card [votingEvent]=topic [id]=index></app-topic-card>
     } @empty {
