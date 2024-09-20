@@ -6,6 +6,13 @@
     @if (selectedVotingEvent[2]) {
         <button (click)=stopVoting()>Stop voting</button>
     }
+    <ol>
+        @for(option of selectedVotingEvent[1]; track option){
+            <li>
+                {{option[0]}}
+            </li>
+        }
+    </ol>
 }
 
 <button (click)=getAllEvents() >Get All Events</button>
