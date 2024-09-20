@@ -116,3 +116,7 @@ export class WalletService {
   getSignerAddress(){return this.signerAddress;}
   
 }
+
+    // If no %%url%% is provided, it connects to the default
+    // http://localhost:8545, which most nodes use.
+    // await this.connectWithJsonRpcProvider();
