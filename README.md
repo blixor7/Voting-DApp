@@ -42,4 +42,13 @@ getAllVotingEvents()
 
 ![drawio design](./docs/voter-coin-dapp-docs.drawio.svg)
 
+## TODO:
 
+1. If account in metamask is changed, App should connect to this new account and update all states related to this new account.
+    1. Share the responsibilities between wallet service and contract service properly.<br>
+    **Wallet Service**: Should handle Wallet connection, Account connection, Provider, Network,...etc.,<br>
+    **Contract Service**: All Contract related things ONLY.
+2. Create feature to add new event when user is admin
+    1. Make the New Voting Event feature editable for title and topics.
+    2. Make the voting results appear when admin closes the voting event.
+3. Create feature to vote for existing voting event. 
