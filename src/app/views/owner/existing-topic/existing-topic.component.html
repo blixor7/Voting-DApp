@@ -12,6 +12,8 @@
         </app-vote-result>
     }
     <ol>
+        <!-- Tracking expression caused re-creation of the DOM structure.
+                 https://angular.dev/errors/NG0956 -->
         @for(option of selectedVotingEvent[1]; track option[0]){
             <li>
                 {{option[0]}} ➜ 🗳️ votes: {{option[1]}}
