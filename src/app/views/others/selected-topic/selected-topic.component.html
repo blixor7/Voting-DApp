@@ -13,7 +13,7 @@
     }
     <h3>{{selectedVotingEvent[0]}}</h3>
     <ol>
-        @for(option of selectedVotingEvent[1]; track option){
+        @for(option of selectedVotingEvent[1]; track option[0]){
             <li>
                 @if(selectedVotingEvent[2]){
                     <button (click)="vote()">

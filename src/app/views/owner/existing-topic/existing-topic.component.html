@@ -12,7 +12,7 @@
         </app-vote-result>
     }
     <ol>
-        @for(option of selectedVotingEvent[1]; track option){
+        @for(option of selectedVotingEvent[1]; track option[0]){
             <li>
                 {{option[0]}} ➜ 🗳️ votes: {{option[1]}}
             </li>
