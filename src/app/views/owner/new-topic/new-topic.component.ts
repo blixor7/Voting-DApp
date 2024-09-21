@@ -27,4 +27,8 @@ export class NewTopicComponent {
     await this.cs.submitNewTopic(this.topicName, this.optionsList);
     this.cd.setData(NEW_TOPIC_INPROGRESS, false);
   }
+
+  cancel(){
+    this.cd.setData(NEW_TOPIC_INPROGRESS, false);
+  }
 }

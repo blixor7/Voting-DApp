@@ -10,8 +10,8 @@ import { RESULT_OPTION_LIST, RESULT_VOTE_PER_OPTION } from '../../common-data/co
   styleUrl: './vote-result.component.css'
 })
 export class VoteResultComponent implements OnChanges{
-  @Input() optionsList: any;
-  @Input() votesPerOption: any;
+  @Input() optionsList: any = [];
+  @Input() votesPerOption: any = [];
   constructor(private cd: CommonDataService){}
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['optionsList'] && changes['votesPerOption'] ) {

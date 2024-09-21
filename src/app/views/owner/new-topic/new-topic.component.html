@@ -9,15 +9,16 @@
 
     <input type="text" id="topic" placeholder="Type Topic name" [(ngModel)]=topicName>
     <br>Options:
-    <!-- <ol> -->
+    <ol>
         <!-- @for(option of optionsList; track option; let optionIndex = $index){ -->
         
-            <div *ngFor="let option of optionsList; let i = index">
+            <li *ngFor="let option of optionsList; let i = index">
                 <input type="text" id="option-{{i}}" value="{{option}}" [(ngModel)]=optionsList[i]>
-            </div>
+            </li>
         <!-- } -->
-    <!-- </ol> -->
+    </ol>
     <button (click)="addAnotherOption()">Add another option</button>
 
 
 <button (click)="submitNewTopic()">Submit New Topic</button>
+<button (click)="cancel()">Cancel</button>
