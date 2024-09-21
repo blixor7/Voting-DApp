@@ -24,8 +24,6 @@ export class LeftNavComponent implements OnInit{
   ngOnInit(): void {
 
     this.cd.getData(VOTING_EVENTS_LIST).subscribe(value => {
-      // console.log("via common data ",value);
-      
       this.topicsList = <any>value;
 
       // summaries[i].topic = votingEvent.topic;
@@ -44,7 +42,8 @@ export class LeftNavComponent implements OnInit{
   }
 
   addNewTopic(){
+    // this makes the new topic form enabled 
+    // so owner can add new topic and submit
     this.cd.setData(NEW_TOPIC_INPROGRESS, true);
-
   }
 }

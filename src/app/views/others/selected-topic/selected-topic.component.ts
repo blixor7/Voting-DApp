@@ -15,7 +15,7 @@ export class SelectedTopicComponent implements OnChanges {
     votesPerOption: []
   };
 
-  constructor(private cd: CommonDataService, private ref: ChangeDetectorRef){}
+  constructor(private cd: CommonDataService){}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedVotingEvent'] && !changes['selectedVotingEvent'].firstChange) {
