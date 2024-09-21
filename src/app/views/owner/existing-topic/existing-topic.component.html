@@ -1,6 +1,6 @@
 @if(selectedVotingEvent){
-    {{selectedVotingEvent}}
-    Event ID: {{selectedEventId}}
+    <!-- {{selectedVotingEvent}}
+    Event ID: {{selectedEventId}} -->
     <h3>{{selectedVotingEvent[0]}}</h3>
     @if (selectedVotingEvent[2]) {
         <button (click)=stopVoting()>Stop voting</button>
@@ -19,8 +19,3 @@
         }
     </ol>
 }
-
-
-<!-- <button (click)=getAllEvents() >Get All Events</button> -->
-
-<!-- --------------------------------------------------- -->
