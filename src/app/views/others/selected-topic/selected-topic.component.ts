@@ -19,6 +19,8 @@ export class SelectedTopicComponent implements OnInit, OnChanges {
 
   ngOnInit(){
     if(this.selectedVotingEvent && !this.selectedVotingEvent[2]){
+      this.voteData.optionsList = [];
+      this.voteData.votesPerOption = [];
       for (var option of this.selectedVotingEvent[1]) {
         this.voteData.optionsList.push(option[0]);
         this.voteData.votesPerOption.push(Number(option[1]));
@@ -31,6 +33,8 @@ export class SelectedTopicComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedVotingEvent'] && !changes['selectedVotingEvent'].firstChange) {
       if(this.selectedVotingEvent && !this.selectedVotingEvent[2]){
+        this.voteData.optionsList = [];
+        this.voteData.votesPerOption = [];
         for (var option of this.selectedVotingEvent[1]) {
           this.voteData.optionsList.push(option[0]);
           this.voteData.votesPerOption.push(Number(option[1]));
