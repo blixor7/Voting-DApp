@@ -8,6 +8,12 @@
     @if (selectedVotingEvent[2]) {
         <button (click)=stopVoting()>Stop voting</button>
     }
+    @else {
+        <app-vote-result 
+            [optionsList]=voteData.optionsList
+            [votesPerOption]=voteData.votesPerOption>
+        </app-vote-result>
+    }
     <ol>
         @for(option of selectedVotingEvent[1]; track option){
             <li>
@@ -17,6 +23,7 @@
     </ol>
 }
 
-<button (click)=getAllEvents() >Get All Events</button>
+
+<!-- <button (click)=getAllEvents() >Get All Events</button> -->
 
 <!-- --------------------------------------------------- -->

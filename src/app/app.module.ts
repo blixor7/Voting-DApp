@@ -12,6 +12,7 @@ import { ExistingTopicComponent } from './views/owner/existing-topic/existing-to
 import { SelectedTopicComponent } from './views/others/selected-topic/selected-topic.component';
 import { ActiveAccountCardComponent } from './components/active-account-card/active-account-card.component';
 import { TopicCardComponent } from './components/topic-card/topic-card.component';
+import { VoteResultComponent } from './components/vote-result/vote-result.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TopicCardComponent } from './components/topic-card/topic-card.component
     ExistingTopicComponent,
     SelectedTopicComponent,
     ActiveAccountCardComponent,
-    TopicCardComponent
+    TopicCardComponent,
+    VoteResultComponent
   ],
   imports: [
     FormsModule,

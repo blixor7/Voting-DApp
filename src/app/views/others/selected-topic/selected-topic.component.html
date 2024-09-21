@@ -8,7 +8,10 @@
     }
     @else {
         <h3>Voting is closed !</h3>
-        
+        <app-vote-result 
+            [optionsList]=voteData.optionsList
+            [votesPerOption]=voteData.votesPerOption>
+        </app-vote-result>
     }
     <h3>{{selectedVotingEvent[0]}}</h3>
     <ol>

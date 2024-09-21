@@ -22,7 +22,7 @@ export class NewTopicComponent {
   }
 
   async submitNewTopic(){
-    //validate the topic details entered
+    //TODO: validate the topic details entered
     console.log(this.topicName, this.optionsList);
     await this.cs.submitNewTopic(this.topicName, this.optionsList);
     this.cd.setData(NEW_TOPIC_INPROGRESS, false);

@@ -17,6 +17,10 @@ export const VOTING_EVENTS_LIST = 'voting_events_list';
 export const SELECTED_TOPIC = 'selected_topic';
 export const NEW_TOPIC_INPROGRESS = "new_topic_inprogress";
 
+export const RESULT_OPTION_LIST = "result_option_list";
+export const RESULT_VOTE_PER_OPTION = "result_vote_per_option";
+export const RESULT_VOTE_DATA = "result_vote_data";
+
 export const API_URL = 'https://your-api-endpoint.com';
 export const APP_NAME = 'My Awesome App';
 export const DEFAULT_LOCALE = 'en';
